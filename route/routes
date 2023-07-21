@@ -1,0 +1,18 @@
+const express = require('express');
+const router = express.Router();
+const usersController = require('../src/users/usersController');
+
+
+router.route('/users/Login').post(usersController.LoginusersControllerFn);
+router.route('/users/create').post(usersController.createusersControllerFn);
+
+router.route('/users/create').get((req, res) => {
+    // Burada kullanıcıya /users/create yolunda bir sayfa gösterme işlemini yapabilirsiniz.
+    // Örneğin res.render('createUserPage') şeklinde bir şey yapabilirsiniz.
+    // Eğer HTML sayfası göstermek istemiyorsanız, buraya uygun bir yönlendirme işlemi de yapabilirsiniz.
+    res.send('GET isteğiyle /users/create yoluna ulaştınız.');
+  });
+
+module.exports = router;
+
+

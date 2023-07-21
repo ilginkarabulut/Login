@@ -1,0 +1,26 @@
+var usersModel = require('./usersModel');
+var key = '123456789trytrytry';
+var encryptor = require('simple-encryptor')(key);
+
+module.exports.createusersDBService = (usersDetails)=> {
+    return new Promise(function myFn(resolve, reject){
+        var usersModelData = new usersModel();
+
+        usersModelData.firstname = usersDetails.firstname;
+        usersModelData.lastname = usersDetails.lastname;
+        usersModelData.email = usersDetails.email;
+        usersModelData.password = usersDetails.password;
+        var encrypted =encryptor.encrypt(usersDetails.password);
+        usersModelData.password = encrypted;
+
+        usersModelData.save(function resultHandle(error, result){
+            if (error) {
+                reject(false);
+            }
+            else {
+                resolve(true);
+            }
+        });
+    });
+}
+

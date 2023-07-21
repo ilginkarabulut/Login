@@ -1,0 +1,46 @@
+var usersService = require('./usersService');
+
+
+var createusersControllerFn = async (req, res)=>
+{  
+    try{
+        console.log(req.body);
+        var status = await usersService.createusersDBService(req.body);
+        console.log(status);
+
+        if (status) {
+            res.send({"status": true, "message": "User created syccessfully"});
+
+        }
+        else {
+            res.send({"status": false, "message": "Error creating user"});
+        }
+    }
+    catch (err){
+        console.log(err);
+    }
+}
+
+var LoginusersControllerFn = async (req, res)=>
+{
+    var result = null;
+    try{
+        console.log(req.body);
+        var status = await usersService.LoginusersDBService(req.body);
+        console.log(status);
+
+        if (status) {
+            res.send({"status": true, "message": "User created syccessfully"});
+
+        }
+        else {
+            res.send({"status": false, "message": "Error creating user"});
+        }
+    }
+    catch (err){
+        console.log(err);
+    }
+}
+
+
+module.exports = { createusersControllerFn, LoginusersControllerFn };
